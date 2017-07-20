@@ -1,5 +1,4 @@
-//Theory by Salvador Figuerola
-//Coded by Alexis Guijarro
+//Coded by Salvador Figuerola
 
 #include <vicon_mimo_bebop/ArcDrone.h>
 #include <math.h>
