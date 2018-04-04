@@ -4,6 +4,9 @@ This is a compilation of examples ready-to-use for Parrot's Bebop Drone, these e
   - ROS Kinetic
   - Bebop Autonomy 
   - Vicon Bridge
+  - OpenCV
+
+**Mexican National Robotic Tournament 2018, autonomous drone category's best Color Follower added**
 
 These are the examples in this repository:
 ## Simple Test
@@ -13,13 +16,13 @@ These are the examples in this repository:
    
   This program allow to the user to take-off, landing and move across the space using the sensors in the drone. There are four test, and can be selected at the beginning of the source code:
 
--- [**0**] SIMPLE TAKE-OFF & LANDING: It performs a quick takeoff and
+- [**0**] SIMPLE TAKE-OFF & LANDING: It performs a quick takeoff and
 landing at the same place.
--- [**1**] SIMPLE ROUTINE: It performs a actions like elevate, descend,
+- [**1**] SIMPLE ROUTINE: It performs a actions like elevate, descend,
 hover and rotating at certain headings.
--- [**2**] COMPLEX ROUTINE: It performs combined actions (elevate/descend
+- [**2**] COMPLEX ROUTINE: It performs combined actions (elevate/descend
 as it rotates at certain heading).
--- [**3**] CONTINUOUS ROTATING: It keeps a specified altitude and rotates
+- [**3**] CONTINUOUS ROTATING: It keeps a specified altitude and rotates
 infinitely until < Ctrl + C > is pressed and lands.
 
 ## Datalogger
@@ -82,3 +85,13 @@ Just open a new terminal, follow the creators instructions and execute it.
 Its important to give the drones a distance of at least three and a half feet between them using the Y- axis of the world as reference.
 
 As the master drone moves across the space the slave drone will try to replicate its movements using the position and orientation of the first one, keeping a distance between them.
+
+## Bebop Color Follower
+
+  - *Package:* **bebop_color_follower**
+  - *Node:* **bebop_color_follower**
+
+This program requires an object to be followed, it is able to track the object's color clicking on it at the camera window. Once selected and armed the Bebop drone will move to center its nose with the centroid of the object. Once the drone reach certain area of the object to calculate the distance between the drone and the object.
+
+
+**This program helped the SKYLAG team to won the second place of the National Robotic Tournament 2018 in Mexico at the autonomus drone category, it was also considered be the best solution of the challenge.**
