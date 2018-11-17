@@ -1,0 +1,15 @@
+# simple waypoint test
+
+#number of waypoints
+waypoints: 6
+# Trajectory
+# x (meters)
+X: [0.0, 0.9, -0.9, -0.9, 0.9, 0.0]
+# y (meters)
+Y: [0.0, 0.9, 0.9, -0.9, -0.9, 0.0]
+# z (meters)
+Z: [1.0, 1.0, 1.0, 1.0, 1.0, 1.0]
+# Heading [deg]
+Hdg: [0.0, 90.0, -90.0, 180.0, 0.0, 0.0]
+# Waiting time at each waypoint [s]
+Time_goal: [0.0]
