@@ -135,6 +135,17 @@ bool setWayPoints()
 	return false;
 }
 
+void getWP(const Bebop_waypoints::Waypoint::ConstPtr& msg)
+{
+	Bebop_waypoints::Waypoint ct;
+	ct.wp.x = msg->wp.x;
+	ct.wp.y = msg->wp.y;
+	ct.wp.z = msg->wp.z;
+	ct.hdg = msg -> hdg;
+
+	t_wps = ct;
+}
+
 //Get Waypoints from existent topic
 void getWaypoints(const Bebop_waypoints::Waypoints::ConstPtr& msg)
 {
@@ -177,6 +188,7 @@ bool getWayPointInfo()
 	return true;
 }
 
+
 int main(int argc, char** argv)
 {
         ros::init(argc,argv,"bebop_waypoints");			        //Initiates the ROS node
@@ -184,6 +196,7 @@ int main(int argc, char** argv)
         ros::Subscriber joy_sub,bebop_sub;                              //Joystick and Vicon subs
         ros::Subscriber pid_pos_X,pid_pos_Y,pid_hdg,pid_alt;            //PID controllers subs
 	ros::Subscriber wps_sub;					//Waypoints Sub
+	ros::Subscriber wp_sub;						//Waypoint Sub
         ros::Publisher state_pos_X,state_pos_Y,state_hdg,state_alt;     //Current state of the drone
         ros::Publisher sp_pos_X,sp_pos_Y,sp_hdg,sp_alt;                 //Set the goal of the drone
         ros::Publisher tko,land;                                        //Take-off and landing publisher
@@ -243,7 +256,9 @@ int main(int argc, char** argv)
         pid_pos_Y = n.subscribe("/bebop_wps/control_effort_pos_Y",1000,getEffort_pos_Y);
         pid_alt = n.subscribe("/bebop_wps/control_effort_alt",1000,getEffort_alt);
         pid_hdg = n.subscribe("/bebop_wps/control_effort_hdg",1000,getEffort_hdg);
-	wps_sub = n.subscribe("/bebop_wps/waypoints",100,getWaypoints);
+	wps_sub = n.subscribe("/bebop_wps/waypoints",1000,getWaypoints);
+	wp_sub = n.subscribe("/bebop_wps/wp",1000,getWP);
+
 
         //Publishers of the ROS node
         tko = n.advertise<std_msgs::Empty>("/bebop/takeoff",1000);
