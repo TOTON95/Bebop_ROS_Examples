@@ -1,0 +1,68 @@
+<launch>
+   <node name="joy_node" pkg="joy" type="joy_node">
+     <param name="dev" value="/dev/input/js0"/>
+  </node>
+  <group ns="bebop_wps">
+  <rosparam command="load" file="$(find Bebop_waypoints)/flights/test_2.yaml"/>
+  <node pkg="Bebop_waypoints" type="node" name="bebop_waypoints" output="screen" required="true"/>
+  <node pkg="pid" type="controller" name="position_X">
+    <remap from="setpoint" to="setpoint_pos_X"/>
+    <remap from="state" to="state_pos_X"/>
+    <remap from="control_effort" to="control_effort_pos_X"/>
+    <param name="Kp" value="0.85" />
+    <param name="Ki" value="0.0" />
+    <param name="Kd" value="0.6" />
+    <param name="upper_limit" value="0.85" />
+    <param name="lower_limit" value="-0.85" />
+    <param name="windup_limit" value="10" />
+    <param name="cutoff_frequency" value="25" />
+    <param name="max_loop_frequency" value="100.0" />
+    <param name="min_loop_frequency" value="95.0" />
+  </node>
+  <node pkg="pid" type="controller" name="position_Y">
+    <remap from="setpoint" to="setpoint_pos_Y"/>
+    <remap from="state" to="state_pos_Y"/>
+    <remap from="control_effort" to="control_effort_pos_Y"/>
+    <param name="Kp" value="0.85" />
+    <param name="Ki" value="0.0" />
+    <param name="Kd" value="0.6" />
+    <param name="upper_limit" value="0.85" />
+    <param name="lower_limit" value="-0.85" />
+    <param name="windup_limit" value="10" />
+    <param name="cutoff_frequency" value="25" />
+    <param name="max_loop_frequency" value="100.0" />
+    <param name="min_loop_frequency" value="95.0" />
+  </node>
+  <node pkg="pid" type="controller" name="altittude">
+    <remap from="setpoint" to="setpoint_alt"/>
+    <remap from="state" to="state_alt"/>
+    <remap from="control_effort" to="control_effort_alt"/>
+    <param name="Kp" value="3.5" />
+    <param name="Ki" value="0.0" />
+    <param name="Kd" value="0.0001" />
+    <param name="upper_limit" value="10" />
+    <param name="lower_limit" value="-10" />
+    <param name="windup_limit" value="10" />
+    <param name="cutoff_frequency" value="25" />
+    <param name="max_loop_frequency" value="100.0" />
+    <param name="min_loop_frequency" value="95.0" />
+  </node>
+  <node pkg="pid" type="controller" name="heading">
+    <remap from="setpoint" to="setpoint_hdg"/>
+    <remap from="state" to="state_hdg"/>
+    <remap from="control_effort" to="control_effort_hdg"/>
+    <param name="Kp" value="0.02" />
+    <param name="Ki" value="0.0" />
+    <param name="Kd" value="0.005" />
+    <param name="upper_limit" value="0.85" />
+    <param name="lower_limit" value="-0.85" />
+    <param name="windup_limit" value="10" />
+    <param name="cutoff_frequency" value="25" />
+    <param name="max_loop_frequency" value="100.0" />
+    <param name="min_loop_frequency" value="95.0" />
+  </node>
+  <!--<node name="rqt_reconfigure" pkg="rqt_reconfigure" type="rqt_reconfigure" />-->
+  <!--<node pkg="rosbag" type="record" name="rosbag_record_drone"
+       args="record -o $(find Bebop_waypoints)/Bags/test_1 /vicon/BEBOP_1_11_2_18/BEBOP_1_11_2_18" /> -->
+  </group>
+</launch>
